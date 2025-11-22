@@ -1,0 +1,483 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Linktree Keren</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    html {
+      height: 100%;
+    }
+
+    /* Partikel latar belakang bergerak */
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      animation: floatParticle 10s infinite ease-in-out;
+    }
+
+    @keyframes floatParticle {
+      0%, 100% {
+        transform: translateY(0) translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100%) translateX(50px);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .profile-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 25px;
+    }
+
+    .profile-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+      animation: glowPulse 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glowPulse {
+      0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 0.8;
+      }
+    }
+
+    .profile-ring {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 3px solid rgba(255, 255, 255, 0.6);
+      animation: rotateRing 4s linear infinite;
+    }
+
+    @keyframes rotateRing {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    .profile-photo {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 5px solid white;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 1;
+      animation: bounceFloat 3s ease-in-out infinite;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 52px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    @keyframes bounceFloat {
+      0%, 100% {
+        transform: translateY(0px) scale(1);
+      }
+      25% {
+        transform: translateY(-8px) scale(1.02);
+      }
+      75% {
+        transform: translateY(-4px) scale(0.98);
+      }
+    }
+
+    .profile-name {
+      font-size: 32px;
+      font-weight: bold;
+      color: white;
+      margin: 20px 0 10px;
+      text-shadow: 0 3px 15px rgba(0, 0, 0, 0.3);
+      animation: fadeInDown 0.8s ease-out;
+      letter-spacing: 1px;
+    }
+
+    .profile-bio {
+      font-size: 16px;
+      color: rgba(255, 255, 255, 0.95);
+      margin-bottom: 40px;
+      animation: fadeInDown 1s ease-out;
+      line-height: 1.5;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .links-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .link-button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 20px 35px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #1e3c72;
+      text-decoration: none;
+      border-radius: 60px;
+      font-weight: 700;
+      font-size: 18px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      position: relative;
+      overflow: hidden;
+      animation: slideInRight 0.6s ease-out backwards;
+      border: 3px solid transparent;
+    }
+
+    .link-button:nth-child(1) {
+      animation-delay: 0.3s;
+    }
+
+    .link-button:nth-child(2) {
+      animation-delay: 0.5s;
+    }
+
+    .link-button:nth-child(3) {
+      animation-delay: 0.7s;
+    }
+
+    @keyframes slideInRight {
+      from {
+        opacity: 0;
+        transform: translateX(100px) scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+    }
+
+    .link-icon {
+      font-size: 26px;
+      transition: transform 0.3s ease;
+    }
+
+    .link-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s ease, height 0.5s ease;
+      z-index: -1;
+    }
+
+    .link-button:hover {
+      transform: translateY(-8px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+      color: white;
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .link-button:hover::before {
+      width: 120%;
+      height: 400%;
+    }
+
+    .link-button:hover .link-icon {
+      transform: scale(1.2) rotate(5deg);
+    }
+
+    .link-button:active {
+      transform: translateY(-4px) scale(1.02);
+    }
+
+    /* Efek shimmer */
+    .link-button::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -100%;
+      width: 50%;
+      height: 200%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+      transform: skewX(-20deg);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0% {
+        left: -100%;
+      }
+      100% {
+        left: 200%;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 30px 15px;
+      }
+
+      .profile-name {
+        font-size: 26px;
+      }
+
+      .profile-bio {
+        font-size: 14px;
+      }
+
+      .link-button {
+        padding: 18px 30px;
+        font-size: 16px;
+      }
+
+      .link-icon {
+        font-size: 22px;
+      }
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Partikel latar belakang -->
+  <div class="particle" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="particle" style="left: 20%; animation-delay: 2s;"></div>
+  <div class="particle" style="left: 30%; animation-delay: 4s;"></div>
+  <div class="particle" style="left: 40%; animation-delay: 1s;"></div>
+  <div class="particle" style="left: 50%; animation-delay: 3s;"></div>
+  <div class="particle" style="left: 60%; animation-delay: 5s;"></div>
+  <div class="particle" style="left: 70%; animation-delay: 2.5s;"></div>
+  <div class="particle" style="left: 80%; animation-delay: 4.5s;"></div>
+  <div class="particle" style="left: 90%; animation-delay: 1.5s;"></div>
+  <div class="container">
+   <div class="profile-wrapper">
+    <div class="profile-glow"></div>
+    <div class="profile-ring"></div>
+    <div class="profile-photo" id="profilePhoto">
+      <div id="container"></div>
+      <div class="avatar">
+        N
+      </div>
+     
+    </div>
+   </div>
+   <h1 class="nafiz.jpg" id="profileName">Muhammadnafizz</h1>
+   <p class="nafiz.jpg" id="profileBio">Selamat datang di halaman link saya</p>
+   <div class="links-container"><a href="https://www.instagram.com/_muhammadnafizz?igsh=MTJjbTdiaHZneGFzMA==" target="_blank" rel="noopener noreferrer" class="link-button" id="link1"> <span class="link-icon">📷</span> <span id="link1Text">Instagram</span> </a> <a href="https://www.instagram.com/p/DP8twNuAWge/?img_index=12&igsh=NzN0dW11eHB3N2No" target="_blank" rel="noopener noreferrer" class="link-button" id="link2"> <span class="link-icon">📚</span> <span id="link2Text">Education</span> </a> <a href="https://vt.tiktok.com/ZSfrutET4/" target="_blank" rel="noopener noreferrer" class="link-button" id="link3"> <span class="link-icon">🎵</span> <span id="link3Text">TikTok</span> </a>
+   </div>
+  </div>
+  <script>
+    const defaultConfig = {
+      profile_name: "Nama Anda",
+      profile_bio: "Selamat datang di halaman link saya",
+      link1_text: "Instagram",
+      link2_text: "Education",
+      link3_text: "TikTok",
+      background_color: "#1e3c72",
+      surface_color: "#ffffff",
+      text_color: "#1e3c72",
+      primary_action_color: "#667eea",
+      secondary_action_color: "#764ba2",
+      font_family: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+      font_size: 16
+    };
+
+    async function onConfigChange(config) {
+      const profileName = document.getElementById('profileName');
+      const profileBio = document.getElementById('profileBio');
+      const link1Text = document.getElementById('link1Text');
+      const link2Text = document.getElementById('link2Text');
+      const link3Text = document.getElementById('link3Text');
+      const body = document.body;
+
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const surfaceColor = config.surface_color || defaultConfig.surface_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const primaryActionColor = config.primary_action_color || defaultConfig.primary_action_color;
+      const secondaryActionColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+      const fontFamily = config.font_family || defaultConfig.font_family;
+      const fontSize = config.font_size || defaultConfig.font_size;
+
+      profileName.textContent = config.profile_name || defaultConfig.profile_name;
+      profileBio.textContent = config.profile_bio || defaultConfig.profile_bio;
+      link1Text.textContent = config.link1_text || defaultConfig.link1_text;
+      link2Text.textContent = config.link2_text || defaultConfig.link2_text;
+      link3Text.textContent = config.link3_text || defaultConfig.link3_text;
+
+      body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${primaryActionColor} 50%, ${secondaryActionColor} 100%)`;
+      body.style.fontFamily = `${fontFamily}, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif`;
+
+      profileName.style.fontSize = `${fontSize * 2}px`;
+      profileBio.style.fontSize = `${fontSize}px`;
+
+      const linkButtons = document.querySelectorAll('.link-button');
+      linkButtons.forEach(button => {
+        button.style.background = `rgba(255, 255, 255, 0.95)`;
+        button.style.color = textColor;
+        button.style.fontSize = `${fontSize * 1.125}px`;
+      });
+
+      const linkIcons = document.querySelectorAll('.link-icon');
+      linkIcons.forEach(icon => {
+        icon.style.fontSize = `${fontSize * 1.625}px`;
+      });
+    }
+
+    function mapToCapabilities(config) {
+      return {
+        recolorables: [
+          {
+            get: () => config.background_color || defaultConfig.background_color,
+            set: (value) => {
+              config.background_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              config.surface_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ surface_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.text_color || defaultConfig.text_color,
+            set: (value) => {
+              config.text_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+            set: (value) => {
+              config.primary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ primary_action_color: value });
+              }
+            }
+          },
+          {
+            get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+            set: (value) => {
+              config.secondary_action_color = value;
+              if (window.elementSdk) {
+                window.elementSdk.setConfig({ secondary_action_color: value });
+              }
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => config.font_family || defaultConfig.font_family,
+          set: (value) => {
+            config.font_family = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          }
+        },
+        fontSizeable: {
+          get: () => config.font_size || defaultConfig.font_size,
+          set: (value) => {
+            config.font_size = value;
+            if (window.elementSdk) {
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }
+      };
+    }
+
+    function mapToEditPanelValues(config) {
+      return new Map([
+        ["profile_name", config.profile_name || defaultConfig.profile_name],
+        ["profile_bio", config.profile_bio || defaultConfig.profile_bio],
+        ["link1_text", config.link1_text || defaultConfig.link1_text],
+        ["link2_text", config.link2_text || defaultConfig.link2_text],
+        ["link3_text", config.link3_text || defaultConfig.link3_text]
+      ]);
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a2509d7270ace3a',t:'MTc2Mzc3ODk3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
